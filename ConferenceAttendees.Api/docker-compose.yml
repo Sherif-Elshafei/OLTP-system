@@ -1,0 +1,21 @@
+services:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: ConferenceAttendeeDb
+    ports:
+      - "1400:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - conferenceattendeesapi_default
+
+volumes:
+  mysql-data:
+
+networks:
+  conferenceattendeesapi_default:
+    external: true

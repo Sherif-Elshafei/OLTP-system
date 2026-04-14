@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.swp
+*.log
+appsettings.Development.json
+.env
+docker-data/
