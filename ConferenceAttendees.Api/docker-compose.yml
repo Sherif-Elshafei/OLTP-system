@@ -12,10 +12,26 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - conferenceattendeesapi_default
-
-volumes:
-  mysql-data:
+  
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: conference-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5258
+      ConnectionStrings__ConferenceAttendeeDatabaseConnection: Server=mysql-db;Port=3306;Database=ConferenceAttendeeDb;User=root;Password=12345678;
+    ports:
+      - "5258:5258"
+    depends_on:
+      - mysql-db
+    networks:
+      - conferenceattendeesapi_default
 
 networks:
   conferenceattendeesapi_default:
     external: true
+
+volumes:
+  mysql-data:
