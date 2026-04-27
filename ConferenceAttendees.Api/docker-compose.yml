@@ -12,10 +12,32 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - conferenceattendeesapi_default
-
-volumes:
-  mysql-data:
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p12345678"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: conference-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5258
+      ConnectionStrings__ConferenceAttendeeDatabaseConnection: Server=mysql-db;Port=3306;Database=ConferenceAttendeeDb;User=root;Password=12345678;
+    ports:
+      - "5258:5258"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - conferenceattendeesapi_default
 
 networks:
   conferenceattendeesapi_default:
-    external: true
+    # external: true #only if you run docker network create conferenceattendeesapi_default
+
+volumes:
+  mysql-data:
