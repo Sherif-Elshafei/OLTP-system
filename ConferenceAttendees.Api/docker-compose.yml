@@ -12,6 +12,11 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - conferenceattendeesapi_default
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p12345678"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
   
   api:
     build:
@@ -25,13 +30,14 @@ services:
     ports:
       - "5258:5258"
     depends_on:
-      - mysql-db
+      mysql-db:
+        condition: service_healthy
     networks:
       - conferenceattendeesapi_default
 
 networks:
   conferenceattendeesapi_default:
-    external: true
+    # external: true #only if you run docker network create conferenceattendeesapi_default
 
 volumes:
   mysql-data:
