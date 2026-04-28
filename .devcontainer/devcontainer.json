@@ -1,0 +1,14 @@
+{
+  "name": "OLTP API Environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "api",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [5258],
+  "postCreateCommand": "docker compose up --build -d",
+  "portsAttributes": {
+    "5258": {
+      "label": "Swagger API",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
