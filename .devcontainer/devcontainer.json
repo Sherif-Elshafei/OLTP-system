@@ -1,6 +1,6 @@
 {
   "name": "OLTP API Environment",
-  "dockerComposeFile": "docker-compose.yml",
+  "dockerComposeFile": "../docker-compose.yml",
   "service": "api",
   "workspaceFolder": "/workspace",
   "forwardPorts": [5258],
