@@ -1,8 +1,19 @@
 Demonstrating:
 
-source control
-containerization
-CI/CD
-environment management
-deployment thinking
-API usability
+✔ Source control (Git/GitHub)
+✔ Containerization (Docker) and Multi-container orchestration (Docker Compose)
+✔ CI/CD (GitHub Actions) → builds and publishes Docker images to GHCR on each push
+✔ Reproducible development environments (Compose)
+✔ Container registry usage (GHCR)
+✔ Environment management
+✔ Resilience → API can start without DB using SKIP_DB flag
+✔ Deployment thinking
+✔ RESTful API design and layered architecture
+✔ API usability and documentation (Swagger)
+
+## 🚀 Try execution in the Cloud (No Installation; zero local setup) 
+
+1. Click "Code" → "Codespaces" → "Create Codespace"
+2. Wait for environment to load
+3. Open forwarded port 5258
+4. Visit /swagger
