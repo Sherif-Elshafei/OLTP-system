@@ -1,10 +1,11 @@
 {
   "name": "OLTP API Environment",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "api",
-  "workspaceFolder": "/workspace",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
   "forwardPorts": [5258],
-  "postCreateCommand": "docker compose up --build -d",
+  "postCreateCommand": "cd ConferenceAttendees.Api && docker compose up --build -d",
   "portsAttributes": {
     "5258": {
       "label": "Swagger API",
